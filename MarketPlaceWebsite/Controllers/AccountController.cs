@@ -45,7 +45,7 @@ namespace MarketPlaceWebsite.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Hoe");
+                        return RedirectToAction("Index", "Home");
                     }
                 }
                 else
