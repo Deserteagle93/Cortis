@@ -50,7 +50,7 @@ namespace MarketPlaceWebsite.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "The user name or  provided is incorrect.");
+                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
                 }
             }
 
