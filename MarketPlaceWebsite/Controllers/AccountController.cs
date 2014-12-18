@@ -89,7 +89,7 @@ namespace MarketPlaceWebsite.Controllers
                 if (createStatus == MembershipCreateStatus.Success)
                 {
                     FormsService.SignIn(model.UserName, false /* createPersistentCookie */);
-                    return RedirectToAction("Index", "Hoe");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
