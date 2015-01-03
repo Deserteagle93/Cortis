@@ -118,7 +118,7 @@ namespace MarketPlaceWebsite.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "The curren password is incorrect or the new password is invalid.");
+                    ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
                 }
             }
             ViewBag.PasswordLength = MembershipService.MinPasswordLength;
