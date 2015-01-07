@@ -1,0 +1,7 @@
+D:\Documents\Visual Studio 2010\Projects\MarketPlaceWebsite\DataLayer\bin\Debug\DataLayer.dll
+D:\Documents\Visual Studio 2010\Projects\MarketPlaceWebsite\DataLayer\bin\Debug\DataLayer.pdb
+D:\Documents\Visual Studio 2010\Projects\MarketPlaceWebsite\DataLayer\bin\Debug\CommonLayer.dll
+D:\Documents\Visual Studio 2010\Projects\MarketPlaceWebsite\DataLayer\bin\Debug\CommonLayer.pdb
+D:\Documents\Visual Studio 2010\Projects\MarketPlaceWebsite\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+D:\Documents\Visual Studio 2010\Projects\MarketPlaceWebsite\DataLayer\obj\Debug\DataLayer.dll
+D:\Documents\Visual Studio 2010\Projects\MarketPlaceWebsite\DataLayer\obj\Debug\DataLayer.pdb

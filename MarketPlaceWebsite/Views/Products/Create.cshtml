@@ -1,0 +1,58 @@
+﻿@model CommonLayer.Product
+
+@{
+    ViewBag.Title = "Create Product";
+}
+
+<h2>Create</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Product</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductName)
+            @Html.ValidationMessageFor(model => model.ProductName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProductDescription)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProductDescription)
+            @Html.ValidationMessageFor(model => model.ProductDescription)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Stock)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Stock)
+            @Html.ValidationMessageFor(model => model.Stock)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Price)€
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "SellerProduct")
+</div>
+

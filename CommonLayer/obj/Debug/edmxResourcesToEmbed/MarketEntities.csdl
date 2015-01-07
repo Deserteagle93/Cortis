@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MarketModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="MarketEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Products" EntityType="MarketModel.Product" />
+    <EntitySet Name="Roles" EntityType="MarketModel.Role" />
+    <EntitySet Name="Users" EntityType="MarketModel.User" />
+    <AssociationSet Name="FK_User_Role" Association="MarketModel.FK_User_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_User" Association="MarketModel.FK_Product_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Productid" />
+    </Key>
+    <Property Type="Guid" Name="Productid" Nullable="false" />
+    <Property Type="String" Name="ProductName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ProductDescription" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="Stock" Nullable="false" />
+    <Property Type="Decimal" Name="Price" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="Guid" Name="Userid" />
+    <NavigationProperty Name="User" Relationship="MarketModel.FK_Product_User" FromRole="Product" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Roleid" />
+    </Key>
+    <Property Type="Int32" Name="Roleid" Nullable="false" />
+    <Property Type="String" Name="Role1" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Users" Relationship="MarketModel.FK_User_Role" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Userid" />
+    </Key>
+    <Property Type="Guid" Name="Userid" Nullable="false" />
+    <Property Type="String" Name="Username" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="Roleid" Nullable="false" />
+    <NavigationProperty Name="Role" Relationship="MarketModel.FK_User_Role" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="Products" Relationship="MarketModel.FK_Product_User" FromRole="User" ToRole="Product" />
+  </EntityType>
+  <Association Name="FK_User_Role">
+    <End Type="MarketModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="MarketModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Roleid" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Roleid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_User">
+    <End Type="MarketModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="MarketModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Userid" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="Userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

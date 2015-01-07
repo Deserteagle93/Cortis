@@ -1,0 +1,11 @@
+D:\Documents\Visual Studio 2010\Projects\MarketPlaceWebsite\MarketPlaceWebsite\bin\MarketPlaceWebsite.dll
+D:\Documents\Visual Studio 2010\Projects\MarketPlaceWebsite\MarketPlaceWebsite\bin\MarketPlaceWebsite.pdb
+D:\Documents\Visual Studio 2010\Projects\MarketPlaceWebsite\MarketPlaceWebsite\bin\Business.dll
+D:\Documents\Visual Studio 2010\Projects\MarketPlaceWebsite\MarketPlaceWebsite\bin\CommonLayer.dll
+D:\Documents\Visual Studio 2010\Projects\MarketPlaceWebsite\MarketPlaceWebsite\bin\DataLayer.dll
+D:\Documents\Visual Studio 2010\Projects\MarketPlaceWebsite\MarketPlaceWebsite\bin\Business.pdb
+D:\Documents\Visual Studio 2010\Projects\MarketPlaceWebsite\MarketPlaceWebsite\bin\CommonLayer.pdb
+D:\Documents\Visual Studio 2010\Projects\MarketPlaceWebsite\MarketPlaceWebsite\bin\DataLayer.pdb
+D:\Documents\Visual Studio 2010\Projects\MarketPlaceWebsite\MarketPlaceWebsite\obj\Debug\MarketPlaceWebsite.csprojResolveAssemblyReference.cache
+D:\Documents\Visual Studio 2010\Projects\MarketPlaceWebsite\MarketPlaceWebsite\obj\Debug\MarketPlaceWebsite.dll
+D:\Documents\Visual Studio 2010\Projects\MarketPlaceWebsite\MarketPlaceWebsite\obj\Debug\MarketPlaceWebsite.pdb

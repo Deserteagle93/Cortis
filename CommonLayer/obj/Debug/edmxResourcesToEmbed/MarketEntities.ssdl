@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MarketModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="MarketModelStoreContainer">
+    <EntitySet Name="Product" EntityType="MarketModel.Store.Product" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Role" EntityType="MarketModel.Store.Role" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User" EntityType="MarketModel.Store.User" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Product_User" Association="MarketModel.Store.FK_Product_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="MarketModel.Store.FK_User_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Productid" />
+    </Key>
+    <Property Name="Productid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProductName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ProductDescription" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="Stock" Type="int" Nullable="false" />
+    <Property Name="Price" Type="decimal" Nullable="false" />
+    <Property Name="Userid" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Roleid" />
+    </Key>
+    <Property Name="Roleid" Type="int" Nullable="false" />
+    <Property Name="Role" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Userid" />
+    </Key>
+    <Property Name="Userid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Username" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Email" Type="varchar" Nullable="false" MaxLength="150" />
+    <Property Name="Roleid" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Product_User">
+    <End Role="User" Type="MarketModel.Store.User" Multiplicity="0..1" />
+    <End Role="Product" Type="MarketModel.Store.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Userid" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="Userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role">
+    <End Role="Role" Type="MarketModel.Store.Role" Multiplicity="1" />
+    <End Role="User" Type="MarketModel.Store.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Roleid" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Roleid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

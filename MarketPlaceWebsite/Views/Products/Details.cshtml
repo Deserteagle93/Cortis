@@ -1,0 +1,27 @@
+﻿@model CommonLayer.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<fieldset>
+    <legend>Product Details</legend>
+
+    <div class="display-label"><H3>Product Name:</H3></div>
+    <div class="display-field">@Model.ProductName</div>
+
+    <div class="display-label"><h3>Description:</h3></div>
+    <div class="display-field">@Model.ProductDescription</div>
+
+    <div class="display-label"><h3>Stock:</h3></div>
+    <div class="display-field">@Model.Stock</div>
+
+    <div class="display-label"><h3>Price:</h3></div>
+    <div class="display-field">@String.Format("{0:F}", Model.Price)</div>
+
+    <div class="display-label"><h3>Seller:</h3></div>
+    <div class="display-field">@Model.User.Username</div>
+</fieldset>
+
+
