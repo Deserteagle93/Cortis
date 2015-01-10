@@ -215,7 +215,7 @@ namespace MarketPlaceWebsite.Controllers
                     }
                 }
             }
-            return RedirectToAction("LogOn");
+            return RedirectToAction("Logn");
         }
 
         public ActionResult Details(object id)
