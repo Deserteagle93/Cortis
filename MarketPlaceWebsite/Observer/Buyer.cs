@@ -8,33 +8,37 @@ namespace MarketPlaceWebsite.Observer
 {
     public class Buyer:IEmailList
     {
-        string email = "";
-        public Buyer(string email)
-        {
-            this.email = email;
-        }
+        List<string> email = new List<string>();
+
         public void notify(string item,string desc)
-        {
-            
+        {            
             try
-            {
-                MailMessage mail = new MailMessage();
-                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+            {//loop all emails
+                foreach (string s in email)
+                {
+                    MailMessage mail = new MailMessage();
+                    SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
-                mail.From = new MailAddress("JoeBroMan@gmail.com");
-                mail.To.Add(email);
-                mail.Subject = "New Product added!";
-                mail.Body = "Hello there from MarketPlace! A new item has been added to our website! Item:"+item+" Come check it out it is described as:"+desc;
+                    mail.From = new MailAddress("JoeBroMan@gmail.com");
+                    mail.To.Add(s);
+                    mail.Subject = "New Product added!";
+                    mail.Body = "Hello there from MarketPlace! A new item has been added to our website! Item:" + item + " Come check it out it is described as:" + desc;
 
-                SmtpServer.Port = 587;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("JoeBroMan@gmail.com", "abc123456");
-                SmtpServer.EnableSsl = true;
+                    SmtpServer.Port = 587;
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("JoeBroMan@gmail.com", "abc123456");
+                    SmtpServer.EnableSsl = true;
 
-                SmtpServer.Send(mail);
+                    SmtpServer.Send(mail);
+                }
             }
             catch (Exception ex)
             {
             }
+        }
+        //add email to list
+        public void addemail(string a)
+        {
+            this.email.Add(a);
         }
     }
 }

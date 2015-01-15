@@ -21,8 +21,8 @@
     <Property Name="ProductName" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="ProductDescription" Type="varchar" Nullable="false" MaxLength="200" />
     <Property Name="Stock" Type="int" Nullable="false" />
-    <Property Name="Price" Type="decimal" Nullable="false" />
     <Property Name="Userid" Type="uniqueidentifier" />
+    <Property Name="Price" Type="float" />
   </EntityType>
   <EntityType Name="Role">
     <Key>

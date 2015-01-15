@@ -4,8 +4,8 @@
     <EntitySetMapping Name="Products">
       <EntityTypeMapping TypeName="MarketModel.Product">
         <MappingFragment StoreEntitySet="Product">
-          <ScalarProperty Name="Userid" ColumnName="Userid" />
           <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Userid" ColumnName="Userid" />
           <ScalarProperty Name="Stock" ColumnName="Stock" />
           <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
           <ScalarProperty Name="ProductName" ColumnName="ProductName" />

@@ -26,8 +26,8 @@
           <Property Name="ProductName" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="ProductDescription" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="Stock" Type="int" Nullable="false" />
-          <Property Name="Price" Type="decimal" Nullable="false" />
           <Property Name="Userid" Type="uniqueidentifier" />
+          <Property Name="Price" Type="float" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -78,13 +78,13 @@
           <EntitySet Name="Products" EntityType="MarketModel.Product" />
           <EntitySet Name="Roles" EntityType="MarketModel.Role" />
           <EntitySet Name="Users" EntityType="MarketModel.User" />
-          <AssociationSet Name="FK_User_Role" Association="MarketModel.FK_User_Role">
-            <End Role="Role" EntitySet="Roles" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
           <AssociationSet Name="FK_Product_User" Association="MarketModel.FK_Product_User">
             <End Role="User" EntitySet="Users" />
             <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="MarketModel.FK_User_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Product">
@@ -95,8 +95,8 @@
           <Property Type="String" Name="ProductName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="ProductDescription" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="Stock" Nullable="false" />
-          <Property Type="Decimal" Name="Price" Nullable="false" Precision="18" Scale="0" />
           <Property Type="Guid" Name="Userid" />
+          <Property Type="Double" Name="Price" />
           <NavigationProperty Name="User" Relationship="MarketModel.FK_Product_User" FromRole="Product" ToRole="User" />
         </EntityType>
         <EntityType Name="Role">
@@ -116,21 +116,9 @@
           <Property Type="String" Name="Password" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Email" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="Roleid" Nullable="false" />
-          <NavigationProperty Name="Role" Relationship="MarketModel.FK_User_Role" FromRole="User" ToRole="Role" />
           <NavigationProperty Name="Products" Relationship="MarketModel.FK_Product_User" FromRole="User" ToRole="Product" />
+          <NavigationProperty Name="Role" Relationship="MarketModel.FK_User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
-        <Association Name="FK_User_Role">
-          <End Type="MarketModel.Role" Role="Role" Multiplicity="1" />
-          <End Type="MarketModel.User" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="Roleid" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="Roleid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Product_User">
           <End Type="MarketModel.User" Role="User" Multiplicity="0..1" />
           <End Type="MarketModel.Product" Role="Product" Multiplicity="*" />
@@ -143,7 +131,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK_User_Role">
+          <End Type="MarketModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="MarketModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Roleid" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Roleid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -152,8 +152,8 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="MarketModel.Product">
               <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="Userid" ColumnName="Userid" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
                 <ScalarProperty Name="Stock" ColumnName="Stock" />
                 <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
@@ -201,16 +201,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="MarketEntities">
-        <EntityTypeShape EntityType="MarketModel.Product" Width="1.5" PointX="5.75" PointY="1.25" Height="2.3648893229166665" />
-        <EntityTypeShape EntityType="MarketModel.Role" Width="1.5" PointX="0.75" PointY="1.25" Height="1.5956835937499996" />
-        <EntityTypeShape EntityType="MarketModel.User" Width="1.5" PointX="3" PointY="0.875" Height="2.1725878906249996" />
-        <AssociationConnector Association="MarketModel.FK_User_Role" >
-          <ConnectorPoint PointX="2.25" PointY="2.047841796875" />
-          <ConnectorPoint PointX="3" PointY="2.047841796875" />
-        </AssociationConnector>
+        <EntityTypeShape EntityType="MarketModel.Product" Width="1.5" PointX="6.5" PointY="2.5" Height="2.3648893229166656" />
+        <EntityTypeShape EntityType="MarketModel.Role" Width="1.5" PointX="2.875" PointY="4.375" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="MarketModel.User" Width="1.5" PointX="3" PointY="1" Height="2.3648893229166674" />
         <AssociationConnector Association="MarketModel.FK_Product_User" >
-          <ConnectorPoint PointX="4.5" PointY="2.2449446614583328" />
-          <ConnectorPoint PointX="5.75" PointY="2.2449446614583328" />
+          <ConnectorPoint PointX="4.5" PointY="2.9324446614583337" />
+          <ConnectorPoint PointX="6.5" PointY="2.9324446614583337" />
+        </AssociationConnector>
+        <AssociationConnector Association="MarketModel.FK_User_Role" >
+          <ConnectorPoint PointX="3.6875" PointY="4.375" />
+          <ConnectorPoint PointX="3.6875" PointY="3.3648893229166674" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

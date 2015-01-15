@@ -45,7 +45,7 @@ namespace MarketPlaceWebsite.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Hoe");
                     }
                 }
                 else
@@ -129,6 +129,107 @@ namespace MarketPlaceWebsite.Controllers
         {
             return View();
         }
+        public ActionResult Roles()
+        {
+            if (HttpContext.User.Identity.Name != null)
+            {
+                if (Business.User.userIsAdmin(HttpContext.User.Identity.Name))
+                {
+                    return View(new Business.Roles().getRoles());
+                }
+            }
+            return RedirectToAction("LogOn");
+        }
+
+        public ActionResult Create()
+        {
+            if (HttpContext.User.Identity.Name != null)
+            {
+                if (Business.User.userIsAdmin(HttpContext.User.Identity.Name))
+                {
+                    return View();
+                }
+            }
+            return RedirectToAction("LogOn");
+        }
+
+        [HttpPost]
+        public ActionResult Create(CommonLayer.Role model)
+        {
+            if (HttpContext.User.Identity.Name != null)
+            {
+                if (Business.User.userIsAdmin(HttpContext.User.Identity.Name))
+                {
+                    List<CommonLayer.Role> roles = new Business.Roles().getRoles().ToList();
+                    int max = 0;
+                    foreach (CommonLayer.Role r in roles)
+                    {
+                        if (max <= r.Roleid)
+                        {
+                            max = r.Roleid;
+                        }
+                    } model.Roleid = max+1;
+                    new Business.Roles().AddRole(model);
+                    return RedirectToAction("Roles");
+                }
+            }
+            return RedirectToAction("LogOn");
+        }
+
+        public ActionResult Delete(object id)
+        {
+            if (HttpContext.User.Identity.Name != null)
+            {
+                if (Business.User.userIsAdmin(HttpContext.User.Identity.Name))
+                {
+                    Business.Roles.DeleteRole(Convert.ToInt32(id.ToString()));
+                }
+            }
+            return RedirectToAction("Roles");
+        }
+
+        public ActionResult Edit(object id)
+        {
+            if (HttpContext.User.Identity.Name != null)
+            {
+                if (Business.User.userIsAdmin(HttpContext.User.Identity.Name))
+                {
+                    return View(new Business.Roles().getRole(Convert.ToInt32(id.ToString())));
+                }
+            } return RedirectToAction("LogOn"); 
+        }
+        [HttpPost]
+        public ActionResult Edit(CommonLayer.Role model)
+        {
+            if (HttpContext.User.Identity.Name != null)
+            {
+                if (Business.User.userIsAdmin(HttpContext.User.Identity.Name))
+                {
+                    if (model.Role1 != null)
+                    {
+                        if (model.Role1 != "")
+                        {
+                            new Business.Roles().EditRole(model);
+                            return RedirectToAction("Roles");
+                        }
+                    }
+                }
+            }
+            return RedirectToAction("LogOn");
+        }
+
+        public ActionResult Details(object id)
+        {
+            if (HttpContext.User.Identity.Name != null)
+            {
+                if (Business.User.userIsAdmin(HttpContext.User.Identity.Name))
+                {
+                    return View(new Business.Roles().getRole(Convert.ToInt32(id)));
+                }
+            }
+            return RedirectToAction("LogOn");
+        }
+                
 
     }
 }

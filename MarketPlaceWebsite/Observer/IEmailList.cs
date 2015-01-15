@@ -7,6 +7,7 @@ namespace MarketPlaceWebsite.Observer
 {
     public interface IEmailList
     {
+        void addemail(string a);
         void notify(string a, string b);
     }
 }

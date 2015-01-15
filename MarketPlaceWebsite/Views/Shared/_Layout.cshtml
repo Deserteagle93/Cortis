@@ -29,6 +29,10 @@
                     {
                         <li>@Html.ActionLink("Your Products", "SellerProduct", "Products")</li>
                     }
+                    if (Business.User.userIsAdmin(Context.User.Identity.Name))
+                    {
+                        <li>@Html.ActionLink("Manage Roles", "Roles", "Account")</li>
+                    }
                     }
                 </ul>
 

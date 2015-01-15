@@ -1,15 +1,24 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketPlaceWebsite", "MarketPlaceWebsite\MarketPlaceWebsite.csproj", "{56FF9A1A-23CC-4DA9-800D-0E1871818F29}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{420873D4-8EFB-4441-BA9E-DA1E090E0481}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		MarketPlaceWebsite1.vsmdi = MarketPlaceWebsite1.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketPlaceWebsite.Tests", "MarketPlaceWebsite.Tests\MarketPlaceWebsite.Tests.csproj", "{FCD1BD8A-BEBE-400D-BFB4-53D73ED2CA62}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketPlaceWebsite", "MarketPlaceWebsite\MarketPlaceWebsite.csproj", "{56FF9A1A-23CC-4DA9-800D-0E1871818F29}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{BC47CEF3-2388-49E5-8465-1885A2246622}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{158242A3-A57B-4D46-8BC7-249BD2326339}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLayer", "CommonLayer\CommonLayer.csproj", "{4D9BD9B7-39D5-4C5B-A1D3-8F006983B999}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketTest", "MarketTest\MarketTest.csproj", "{1304E9A7-0097-47ED-9D86-09AB3D986348}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +30,6 @@ Global
 		{56FF9A1A-23CC-4DA9-800D-0E1871818F29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56FF9A1A-23CC-4DA9-800D-0E1871818F29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56FF9A1A-23CC-4DA9-800D-0E1871818F29}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FCD1BD8A-BEBE-400D-BFB4-53D73ED2CA62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FCD1BD8A-BEBE-400D-BFB4-53D73ED2CA62}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FCD1BD8A-BEBE-400D-BFB4-53D73ED2CA62}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FCD1BD8A-BEBE-400D-BFB4-53D73ED2CA62}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BC47CEF3-2388-49E5-8465-1885A2246622}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BC47CEF3-2388-49E5-8465-1885A2246622}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC47CEF3-2388-49E5-8465-1885A2246622}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -37,8 +42,15 @@ Global
 		{4D9BD9B7-39D5-4C5B-A1D3-8F006983B999}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D9BD9B7-39D5-4C5B-A1D3-8F006983B999}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D9BD9B7-39D5-4C5B-A1D3-8F006983B999}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1304E9A7-0097-47ED-9D86-09AB3D986348}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1304E9A7-0097-47ED-9D86-09AB3D986348}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1304E9A7-0097-47ED-9D86-09AB3D986348}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1304E9A7-0097-47ED-9D86-09AB3D986348}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = MarketPlaceWebsite1.vsmdi
 	EndGlobalSection
 EndGlobal

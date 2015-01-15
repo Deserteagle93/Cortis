@@ -19,8 +19,8 @@ using System.Xml.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("MarketModel", "FK_User_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CommonLayer.Role), "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CommonLayer.User), true)]
 [assembly: EdmRelationshipAttribute("MarketModel", "FK_Product_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CommonLayer.User), "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CommonLayer.Product), true)]
+[assembly: EdmRelationshipAttribute("MarketModel", "FK_User_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CommonLayer.Role), "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CommonLayer.User), true)]
 
 #endregion
 
@@ -173,15 +173,13 @@ namespace CommonLayer
         /// <param name="productName">Initial value of the ProductName property.</param>
         /// <param name="productDescription">Initial value of the ProductDescription property.</param>
         /// <param name="stock">Initial value of the Stock property.</param>
-        /// <param name="price">Initial value of the Price property.</param>
-        public static Product CreateProduct(global::System.Guid productid, global::System.String productName, global::System.String productDescription, global::System.Int32 stock, global::System.Decimal price)
+        public static Product CreateProduct(global::System.Guid productid, global::System.String productName, global::System.String productDescription, global::System.Int32 stock)
         {
             Product product = new Product();
             product.Productid = productid;
             product.ProductName = productName;
             product.ProductDescription = productDescription;
             product.Stock = stock;
-            product.Price = price;
             return product;
         }
 
@@ -291,30 +289,6 @@ namespace CommonLayer
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Decimal Price
-        {
-            get
-            {
-                return _Price;
-            }
-            set
-            {
-                OnPriceChanging(value);
-                ReportPropertyChanging("Price");
-                _Price = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Price");
-                OnPriceChanged();
-            }
-        }
-        private global::System.Decimal _Price;
-        partial void OnPriceChanging(global::System.Decimal value);
-        partial void OnPriceChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public Nullable<global::System.Guid> Userid
@@ -335,6 +309,30 @@ namespace CommonLayer
         private Nullable<global::System.Guid> _Userid;
         partial void OnUseridChanging(Nullable<global::System.Guid> value);
         partial void OnUseridChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Price
+        {
+            get
+            {
+                return _Price;
+            }
+            set
+            {
+                OnPriceChanging(value);
+                ReportPropertyChanging("Price");
+                _Price = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Price");
+                OnPriceChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Price;
+        partial void OnPriceChanging(Nullable<global::System.Double> value);
+        partial void OnPriceChanged();
 
         #endregion
 
@@ -452,7 +450,7 @@ namespace CommonLayer
             {
                 OnRole1Changing(value);
                 ReportPropertyChanging("Role1");
-                _Role1 = StructuralObject.SetValidValue(value, false);
+                _Role1 = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("Role1");
                 OnRole1Changed();
             }
@@ -659,6 +657,28 @@ namespace CommonLayer
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MarketModel", "FK_Product_User", "Product")]
+        public EntityCollection<Product> Products
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Product>("MarketModel.FK_Product_User", "Product");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Product>("MarketModel.FK_Product_User", "Product", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MarketModel", "FK_User_Role", "Role")]
         public Role Role
         {
@@ -687,28 +707,6 @@ namespace CommonLayer
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Role>("MarketModel.FK_User_Role", "Role", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MarketModel", "FK_Product_User", "Product")]
-        public EntityCollection<Product> Products
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Product>("MarketModel.FK_Product_User", "Product");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Product>("MarketModel.FK_Product_User", "Product", value);
                 }
             }
         }

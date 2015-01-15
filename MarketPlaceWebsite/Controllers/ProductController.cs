@@ -37,19 +37,23 @@ namespace MarketPlaceWebsite.Controllers
             //Obeserver start
             Observer.Email email = new Observer.Email();
             IQueryable<CommonLayer.User> users = Business.User.getUsers();
+
+            Observer.Buyer buyer = new Observer.Buyer();
+            Observer.Seller seller = new Observer.Seller();
+
             foreach (CommonLayer.User u in users)
             {
                 if (u.Roleid == 1)
                 {
-                    Observer.IEmailList buyer = new Observer.Buyer(u.Email);
-                    email.subscribe(buyer);
+                    buyer.addemail(u.Email);
                 }
                 else if (u.Roleid == 2)
                 {
-                    Observer.IEmailList seller = new Observer.Seller(u.Email);
-                    email.subscribe(seller);
+                    seller.addemail(u.Email);
                 }
             }
+            email.subscribe(buyer);
+            email.subscribe(seller);
 
             email.Notify(model.ProductName,model.ProductDescription);
             //OBeserver end

@@ -42,6 +42,19 @@ namespace Business
              }
              return false;
          }
+         public static bool userIsAdmin(string user)
+         {
+             DataLayer.UserData ud = new DataLayer.UserData();
+             CommonLayer.User theUser = ud.getUser(user);
+             if (theUser != null)
+             {
+                 if (theUser.Roleid == 3)
+                 {
+                     return true;
+                 }
+             }
+             return false;
+         }
 
         public static bool ChangePassword(string user, string oldp, string newp)
         {
